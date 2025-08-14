@@ -1,0 +1,145 @@
+✅ 1. Conceptual Interview Questions on Searching
+These test your understanding of search techniques.
+
+Q1. What are the different types of searching algorithms?
+Answer:
+
+Linear Search
+
+Binary Search
+
+Jump Search
+
+Exponential Search
+
+Interpolation Search
+
+Ternary Search
+
+Fibonacci Search
+
+Hash-based search (e.g., using HashMap)
+
+Q2. When would you use linear search over binary search?
+Answer:
+Use Linear Search when:
+
+The array is unsorted or small
+
+You expect the target to be found near the beginning
+
+Q3. What are the time complexities of different searching algorithms?
+Algorithm	Best	Average	Worst
+Linear Search	O(1)	O(n)	O(n)
+Binary Search	O(1)	O(log n)	O(log n)
+Jump Search	O(√n)	O(√n)	O(√n)
+Interpolation	O(1)	O(log log n)	O(n)
+
+Q4. What are the prerequisites for using Binary Search?
+Answer:
+The array/list must be sorted
+
+You must have random access to elements (works well with arrays, not linked lists)
+
+Q5. What is the difference between iterative and recursive binary search?
+Answer:
+Recursive uses the function call stack (more readable but risk of stack overflow)
+
+Iterative uses a loop (memory efficient)
+
+✅ 2. Coding Interview Questions on Searching in Java
+
+Q6. Implement linear search in Java.
+public static int linearSearch(int[] arr, int target) {
+    for (int i = 0; i < arr.length; i++) {
+        if (arr[i] == target) return i;
+    }
+    return -1;
+}
+
+Q7. Implement binary search in Java.
+public static int binarySearch(int[] arr, int target) {
+    int low = 0, high = arr.length - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] == target) return mid;
+        else if (arr[mid] < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+
+Q8. Find the first and last occurrence of a number in a sorted array.
+public static int firstOccurrence(int[] arr, int target) {
+    int low = 0, high = arr.length - 1, result = -1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target) {
+            result = mid;
+            high = mid - 1;
+        } else if (arr[mid] < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return result;
+}
+
+Q9. Search in a rotated sorted array.
+public static int search(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (nums[mid] == target) return mid;
+        
+        // Left sorted
+        if (nums[left] <= nums[mid]) {
+            if (target >= nums[left] && target < nums[mid]) right = mid - 1;
+            else left = mid + 1;
+        } else { // Right sorted
+            if (target > nums[mid] && target <= nums[right]) left = mid + 1;
+            else right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+Q10. Find the square root of a number using binary search.
+public static int sqrt(int x) {
+    if (x < 2) return x;
+    int low = 1, high = x / 2, result = 0;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (mid <= x / mid) {
+            result = mid;
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return result;
+}
+
+✅ 3. Java-Specific Questions on Searching
+
+Q11. How do you search in a Java List or ArrayList?
+List<String> list = Arrays.asList("apple", "banana", "cherry");
+boolean found = list.contains("banana"); // returns true
+int index = list.indexOf("banana"); // returns 1
+
+Q12. How do you search in a HashMap in Java?
+Map<String, Integer> map = new HashMap<>();
+map.put("apple", 10);
+map.containsKey("apple");  // true
+map.containsValue(10);     // true
+
+Q13. How to perform binary search using Collections or Arrays utility?
+int[] arr = {10, 20, 30, 40};
+int index = Arrays.binarySearch(arr, 30); // returns 2
+
+Q14. Can you do binary search on a LinkedList in Java?
+Answer:
+Not efficiently. LinkedList doesn't support random access (O(1) index access), so binary search is not practical.
+
+Q15. How do you search with a comparator in Java?
+
+List<Integer> list = Arrays.asList(10, 20, 30);
+int index = Collections.binarySearch(list, 20, Comparator.naturalOrder()); // returns 1
