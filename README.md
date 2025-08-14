@@ -15,4 +15,3 @@ It takes an array of integers, searches for a given value, and returns its posit
 3. Traverse the array sequentially to find the target.
 4. Print the index if found, or a "not found" message.
 
-## 📄 Example Output
