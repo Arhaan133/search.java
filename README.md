@@ -1,7 +1,5 @@
 # search.java
 
-# Search.java
-
 ## 📌 Overview
 `search.java` is a simple Java program that demonstrates how to search for an element in an array using **linear search**.  
 It takes an array of integers, searches for a given value, and returns its position if found.
